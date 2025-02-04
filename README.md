@@ -7,7 +7,7 @@ Build and manage zig compiler from source tree.
 - Shortcuts to invoke different compilers.
 
 If you just want a usable zig compiler - You may look at [zigup](https://github.com/marler8997/zigup).
-Zigd is focus on the zig compiler (& std) development.
+Zigd focus on the zig compiler (& std) development.
 
 ## Getting Started
 
@@ -38,7 +38,7 @@ This command builds all the stages zigd provides:
 The stages here is not the same to the zig compiler's "stage1" "stage2" "stage3".
 We use `stageN` here to describe the different build condition.
 
-The `bootstrap` and `stage1` may take hours to complete.
+The build of `bootstrap` and `stage1` may take hours to complete. You also need enough RAM and SWAP (~1.5G per thread, ~18G for a 12 thread computer) to build `bootstrap`.
 
 Use `zigd <stage>` to invoke specific compiler:
 
