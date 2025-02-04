@@ -406,7 +406,6 @@ fn buildBootstrap(allocator: std.mem.Allocator, progress: std.Progress.Node, tre
         build_process.cwd_dir = dir;
         build_process.stderr_behavior = .Pipe;
         build_process.stdout_behavior = .Pipe;
-        build_process.progress_node = build_progress;
 
         var stderr_buf = std.fifo.LinearFifo(u8, .Dynamic).init(allocator);
         defer stderr_buf.deinit();
@@ -623,6 +622,7 @@ fn buildStage2(allocator: std.mem.Allocator, progress: std.Progress.Node, tree: 
         "-freference-trace",
     }, allocator);
     child.progress_node = progress.start("zig build -Ooptimize=ReleaseFast", 0);
+    defer child.progress_node.end();
     child.cwd = tree.root;
 
     const result = try child.spawnAndWait();
@@ -673,6 +673,7 @@ fn buildStage3(allocator: std.mem.Allocator, progress: std.Progress.Node, tree: 
         "-freference-trace",
     }, allocator);
     child.progress_node = progress.start("zig build -Ooptimize=Debug", 0);
+    defer child.progress_node.end();
     child.cwd = tree.root;
 
     const result = try child.spawnAndWait();
