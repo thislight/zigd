@@ -17,8 +17,6 @@ pub fn build(b: *std.Build) void {
     const test_step = b.step("test", "Run unit tests");
     const check_step = b.step("check", "Build but don't install");
 
-    const dep_clap = b.dependency("clap", .{});
-
     {
         const exe = b.addExecutable(.{
             .name = "zigd",
@@ -26,7 +24,6 @@ pub fn build(b: *std.Build) void {
             .target = target,
             .optimize = optimize,
         });
-        exe.root_module.addImport("clap", dep_clap.module("clap"));
 
         // This declares intent for the executable to be installed into the
         // standard location when the user invokes the "install" step (the default

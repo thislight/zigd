@@ -1,7 +1,6 @@
 // This file is part of zigd
 // SPDX: GPL-3.0-or-later
 const std = @import("std");
-const clap = @import("clap");
 
 const Toolchain = struct {
     root: []const u8,
